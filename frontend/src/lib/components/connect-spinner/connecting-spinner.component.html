@@ -1,0 +1,5 @@
+<div class="connecting-spinner-block" *ngIf="!connected">
+    <mat-spinner class="connecting-spinner"></mat-spinner>
+    <div class="connecting-spinner-text">Connecting...</div>
+</div>
+<div class="layout" *ngIf="!connected"></div>

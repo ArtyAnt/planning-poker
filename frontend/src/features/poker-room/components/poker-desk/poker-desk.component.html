@@ -1,0 +1,48 @@
+<div *ngIf="initialized">
+    <toolbar
+            [settings]="roomSettings"
+            [roomId]="roomId"
+    ></toolbar>
+
+    <firework *ngIf="!game.inGame && timer.isEnd && onFirework"></firework>
+
+    <div class="game-field">
+        <div class="players-group">
+            <poker-player
+                    *ngFor="let player of players | keyvalue"
+                    [player]="player.value"
+                    [currentUserId]="currentPlayerId"
+                    [inGame]="game.inGame || !timer.isEnd"
+                    [onMinMaxHighlight]="onMinMaxHighlight"
+                    [style.left]="player.value.coordinate.x + 'px'"
+                    [style.top]="player.value.coordinate.y + 'px'">
+            </poker-player>
+        </div>
+        <div class="game-info">
+            <button mat-raised-button class="game-button not-in-game"
+                    *ngIf="!game.inGame && timer.isEnd"
+                    (click)="newGame()"
+            >New game
+            </button>
+
+            <button mat-raised-button class="game-button in-game"
+                    *ngIf="game.inGame"
+                    [disabled]="nobodyVoted"
+                    (click)="endGame()"
+            >Show cards
+            </button>
+
+            <end-game-timer class="result" [hidden]="game.inGame || timer.isEnd" #timer></end-game-timer>
+
+            <div class="result" *ngIf="!game.inGame && timer.isEnd">
+                <span>{{ game.result }}</span>
+            </div>
+        </div>
+    </div>
+
+    <poker-keyboard
+            [roomId]="roomId"
+            [currentPlayerId]="currentPlayerId"
+            [inGame]="game.inGame"
+    ></poker-keyboard>
+</div>

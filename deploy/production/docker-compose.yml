@@ -1,0 +1,58 @@
+version: "3.8"
+
+services:
+  planning-poker:
+    container_name: pp-be
+
+    image: planning-poker-be
+    build:
+      context: ../..
+      dockerfile: ./backend/Dockerfile
+    networks:
+      - planning-poker-net
+    command: npm run start
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`${HOST_ADDRESS}`) && PathPrefix(`/api`) || Host(`${HOST_ADDRESS}`) && PathPrefix(`/socket.io`)"
+      - "traefik.http.services.backend.loadBalancer.server.port=8000"
+      - "traefik.http.routers.backend.tls=true"
+      - "traefik.http.routers.backend.entrypoints=https"
+
+  traefik:
+    image: traefik:v2.11
+    container_name: pp-gateway
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.yml:/traefik.yml:ro
+      - ./traefik/certificates.yml:/etc/traefik/config/certificates.yml
+      - /etc/planning-poker/certs/.:/etc/traefik/certificates/
+    networks:
+      - planning-poker-net
+
+  web:
+    container_name: pp-web
+
+    image: planning-poker-web
+    build:
+      context: ../..
+      dockerfile: ./frontend/Dockerfile
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.web.rule=Host(`${HOST_ADDRESS}`)"
+      - "traefik.http.services.web.loadbalancer.server.port=8080"
+      - "traefik.http.routers.web.tls=true"
+      - "traefik.http.routers.web.entrypoints=https"
+    networks:
+      - planning-poker-net
+
+networks:
+  planning-poker-net:
+    external: false
+    name: planning-poker-net

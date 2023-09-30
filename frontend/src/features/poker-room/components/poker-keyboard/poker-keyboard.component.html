@@ -1,0 +1,11 @@
+<div class="cards-group">
+    <button mat-raised-button class="card"
+            *ngFor="let card of cards | slice:0:9"
+            [disabled]="!inGame"
+            (click)="clickCard(card.label)"
+            [class.card-picked]="card.picked"
+            [class.card-unpicked]="!card.picked"
+            [class.card-disabled]="!inGame">
+        {{card.label}}
+    </button>
+</div>

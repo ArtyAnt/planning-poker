@@ -1,0 +1,14 @@
+<form class="actions" [formGroup]="formGroup">
+    <div class="toggle-block">
+        <mat-slide-toggle
+                class="toggles"
+                formControlName="minMaxHighlightOption">
+        </mat-slide-toggle>
+        <p class="text-toggle">Highlight min and max values</p>
+    </div>
+
+    <mat-dialog-actions class="actions">
+        <button mat-raised-button (click)="save()" [disabled]="minMaxHighlightBefore == minMaxHighlight">Save</button>
+        <button mat-raised-button (click)="cancel()">Cancel</button>
+    </mat-dialog-actions>
+</form>

@@ -1,0 +1,21 @@
+<form [formGroup]="form" class="form">
+    <mat-label class="text">Rooms list</mat-label>
+    <mat-selection-list [formControl]="roomsControl" [multiple]="false" #rooms>
+        <mat-list-option>ASINT</mat-list-option>
+        <mat-list-option>AIPS</mat-list-option>
+        <mat-list-option>AF</mat-list-option>
+    </mat-selection-list>
+</form>
+
+<div class="roomButtons">
+    <mat-dialog-actions>
+        <button mat-raised-button [disabled]="true">Create new room</button>
+    </mat-dialog-actions>
+    <mat-dialog-actions>
+        <button mat-raised-button [disabled]="true">Delete room</button>
+    </mat-dialog-actions>
+</div>
+
+<mat-dialog-actions class="dialog">
+    <button mat-raised-button class="dialogButton" [disabled]="true">Create temp room</button>
+</mat-dialog-actions>

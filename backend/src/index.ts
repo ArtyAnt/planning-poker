@@ -1,20 +1,23 @@
-import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
+import {Subject} from 'rxjs';
 
-dotenv.config();
+import {SocketServer} from './socketServer/socketServer';
+import {IRoomsService} from './contracts/roomsService';
+import {RoomsService} from './roomsService/roomsService';
+import {RoomsController} from './applicationServer/controllers/roomsController';
+import {RoomMapper} from './mappings/roomMapper';
+import {ApplicationServer} from './applicationServer/applicationServer';
+import {RoomsRepository} from './applicationServer/storages/roomsRepository';
+import {InMemoryRoomsRepository} from './applicationServer/storages/inMemoryRoomsRepository';
+import {RoomSettingsUpdated} from "./subjects/roomSettingsUpdated";
 
-const app: Express = express();
-const port = 8080;
+const subject = new Subject<RoomSettingsUpdated>();
+const roomsRepository: RoomsRepository = new InMemoryRoomsRepository();
+const roomsService: IRoomsService = new RoomsService(roomsRepository, subject);
+const mapper = new RoomMapper();
 
-var path = require('path');
+const roomsController = new RoomsController(roomsService, mapper);
 
-app.get('/', (req: Request, res: Response) => {
-  
-  res.sendFile(path.resolve('../frontend/out/index.html'));
+const httpServer = new ApplicationServer(roomsController);
+new SocketServer(mapper, roomsService, httpServer, subject);
 
-  app.use('/', express.static(path.resolve('../frontend/out')));
-});
-
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-});
+httpServer.run("0.0.0.0", 8000);

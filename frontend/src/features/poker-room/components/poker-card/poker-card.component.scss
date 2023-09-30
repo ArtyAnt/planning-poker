@@ -1,0 +1,39 @@
+.card {
+  height: 80px;
+  width: 60px;
+  margin: 0px auto;
+  font-size: 35px;
+  text-align: center;
+  line-height: 50px;
+  background-color: white
+}
+
+.card-picked {
+  background-color: #307FB3;
+}
+
+.player-pick-min {
+  background-color: #9bd9e6 !important;
+}
+
+.player-pick-max {
+  background-color: #fbd5b5 !important;
+}
+
+.user {
+  border-color: #FF6B39 !important;
+  border-width: 2px;
+}
+
+.unvoted {
+  background-color: #ececec;
+}
+
+.voted {
+  border-color: #9a9a9a !important;
+  border-width: 1px;
+}
+
+.disconnected {
+  background-color: #5b8aa8 !important;
+}
