@@ -1,15 +1,21 @@
 {
   "name": "planningpoker",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "install-backend": "npm --prefix ./backend run install-all",
-    "install-frontend": "npm --prefix ./frontend run install-all",
-    "install-all": "npm run install-backend && npm run install-frontend",
-    "start": "npm --prefix ./backend run start"
-  },
-  "keywords": [],
   "author": "",
-  "license": "ISC"
+  "main": "index.js",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "scripts": {
+    "compile-backend": "npm --prefix ./backend run compile-all",
+    "compile-frontend": "npm --prefix ./frontend run compile-all",
+    "compile-all": "npm run compile-backend && npm run compile-frontend",
+    "install-all": "npm --prefix ./backend install --only=prod && npm --prefix ./frontend install --only=prod",
+    "start": "npm --prefix ./backend run start",
+
+    "compile-frontend-dev": "npm --prefix ./frontend run compile-all-dev",
+    "compile-all-dev": "npm run compile-backend && npm run compile-frontend-dev",
+    "compile-frontend-and-start-dev": "npm run compile-frontend && npm run start",
+    "compile-all-and-start-dev": "npm run compile-all && npm run start"
+  }
 }

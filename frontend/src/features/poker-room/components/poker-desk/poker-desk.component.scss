@@ -1,0 +1,69 @@
+.game-field {
+    min-width: 600px;
+    min-height: 600px;
+
+    position: relative;
+}
+
+.players-group {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+}
+
+poker-player {
+    position: absolute;
+    display: flex;
+    text-align: center;
+
+    transform: translate(-50%, -50px)
+}
+
+.game-info {
+    position: absolute;
+    margin-right: auto;
+    margin-left: auto;
+    left: 50%;
+    right: 50%;
+    top: 49%;
+}
+
+.game-button {
+    width: 110px;
+    height: 70px;
+    font-size: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translate(-50%, -50%);
+}
+
+.not-in-game {
+    background-color: #3081b3 !important;
+    text-shadow: 1px 1px 5px #7a7a7a;
+}
+
+.in-game {
+    background-color: #83c2d0 !important;
+
+    &.card-disabled {
+        opacity: 0.5;
+    }
+}
+
+.result {
+    width: 100px;
+    height: 40px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    transform: translate(-50%, -50%);
+}

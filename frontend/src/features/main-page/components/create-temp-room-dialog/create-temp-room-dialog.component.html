@@ -1,0 +1,7 @@
+<form [formGroup]="form" class="form">
+    <p class="text" *ngFor="let t of text">{{t}}</p>
+</form>
+
+<mat-dialog-actions class="dialog">
+    <button mat-raised-button class="dialogButton" (click)="click()">{{buttonText}}</button>
+</mat-dialog-actions>

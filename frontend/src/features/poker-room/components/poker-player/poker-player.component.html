@@ -1,0 +1,16 @@
+<div class="player">
+    <poker-card
+            [cardValue]="player!.cardValue"
+            [pickedCard]="player!.pickedCard"
+            [isMin]="player!.isMin"
+            [isMax]="player!.isMax"
+            [inGame]="inGame"
+            [currentUser]="currentUser"
+            [onMinMaxHighlight]="onMinMaxHighlight"
+            [connected]="player!.connected"
+    ></poker-card>
+    <div class="name" [class.unvoted]="!inGame && !player!.pickedCard || inGame && !player!.connected">{{ player!.name }}</div>
+    <div *ngIf="inGame && !player!.connected" class="disconnected-icon">
+        <mat-icon class="icon">signal_wifi_bad</mat-icon>
+    </div>
+</div>

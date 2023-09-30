@@ -1,0 +1,32 @@
+.cards-group {
+  margin-left: auto;
+  margin-right: auto;
+
+  text-align: center;
+}
+
+.card {
+  margin: 5px;
+  display: inline-block;
+  text-align: center;
+  line-height: 80px;
+  height: 80px;
+  width: 50px;
+  font-size: 20px;
+
+  &:not(.card-disabled):hover {
+    background-color: #444 !important;
+  }
+
+  &.card-disabled {
+    background-color: #ececec;
+  }
+}
+
+.card-unpicked {
+  background-color: #83c2d0  !important;
+}
+
+.card-picked {
+  background-color: #999  !important;
+}

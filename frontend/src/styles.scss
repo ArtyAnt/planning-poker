@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+  height: 100%;
+  --mdc-circular-progress-active-indicator-color: #3081b3;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mat-mdc-snack-bar-container {
+  &.snackbar {
+    --mdc-snackbar-container-color: #fff;
+    --mdc-snackbar-supporting-text-color: #000;
+  }
+}
+
+.mat-mdc-slide-toggle.mat-accent {
+  --mdc-switch-selected-focus-state-layer-color: #3081b3;
+  --mdc-switch-selected-handle-color: #3081b3;
+  --mdc-switch-selected-hover-state-layer-color: #3081b3;
+  --mdc-switch-selected-pressed-state-layer-color: #3081b3;
+  --mdc-switch-selected-focus-handle-color: #3081b3;
+  --mdc-switch-selected-hover-handle-color: #3081b3;
+  --mdc-switch-selected-pressed-handle-color: #3081b3;
+  --mdc-switch-selected-focus-track-color: #83c2d0;
+  --mdc-switch-selected-hover-track-color: #83c2d0;
+  --mdc-switch-selected-pressed-track-color: #83c2d0;
+  --mdc-switch-selected-track-color: #83c2d0;
+}
+
+.cdk-overlay-container {
+  z-index: 50;
+}

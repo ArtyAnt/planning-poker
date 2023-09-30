@@ -1,0 +1,10 @@
+<button mat-stroked-button class="card"
+        [class.card-picked]="pickedCard && inGame"
+        [class.player-pick-min]="isMin && !inGame && onMinMaxHighlight"
+        [class.player-pick-max]="isMax && !inGame && onMinMaxHighlight"
+        [class.user]="currentUser"
+        [class.unvoted]="!inGame && !pickedCard"
+        [class.voted]="!inGame && pickedCard && !currentUser && connected"
+        [class.disconnected]="inGame && pickedCard && !connected ">
+    <span *ngIf="!inGame">{{cardValue}}</span>
+</button>

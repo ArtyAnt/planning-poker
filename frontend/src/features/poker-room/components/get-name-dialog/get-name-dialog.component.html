@@ -1,0 +1,14 @@
+<form class="form">
+  <mat-form-field class="full-width">
+    <mat-label>Your name</mat-label>
+    <input type="text" matInput [formControl]="nameFormControl" [errorStateMatcher]="matcher"
+           placeholder="Ivan Ivanov">
+    <mat-error *ngIf="nameFormControl.hasError('whitespace') || nameFormControl.hasError('required')">
+        The name must not be empty or consist only of spaces
+    </mat-error>
+  </mat-form-field>
+</form>
+
+<mat-dialog-actions>
+  <button mat-raised-button (click)="save()">Enter the room</button>
+</mat-dialog-actions>
