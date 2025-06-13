@@ -65,7 +65,7 @@ export class PokerDeskComponent implements OnInit, OnDestroy {
         this.currentPlayerId = this.localService.getData("planningPokerId") ?? uuid()
         this.localService.saveData("planningPokerId", this.currentPlayerId);
 
-        this.coordinateCalculator = new CoordinateCalculator(200);
+        this.coordinateCalculator = new CoordinateCalculator();
     }
 
     endGame() {
@@ -153,7 +153,7 @@ export class PokerDeskComponent implements OnInit, OnDestroy {
     }
 
     @HostListener('window:beforeunload', [ '$event' ])
-    beforeUnloadHandler(event: Event) {
+    beforeUnloadHandler(_: Event) {
         this.eventService.leave(this.currentPlayerId, this.roomId);
     }
 
@@ -225,12 +225,12 @@ export class PokerDeskComponent implements OnInit, OnDestroy {
             return;
         }
 
-        const angleStep = 360 / this.players.size;
-        let currentAngle = 0;
+        const coordinates = this.coordinateCalculator.calculateCoordinate(this.players.size);
 
+        let index = 0
         this.players.forEach((player) => {
-            player.coordinate = this.coordinateCalculator.calculateCoordinate(currentAngle);
-            currentAngle += angleStep;
+            player.coordinate = coordinates[index];
+            index++;
         });
     }
 }
