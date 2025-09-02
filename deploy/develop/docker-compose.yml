@@ -8,7 +8,6 @@ services:
     build:
       context: ../..
       dockerfile: ./backend/Dockerfile
-    command: npm run start
     networks:
       - planning-poker-net
     labels:
