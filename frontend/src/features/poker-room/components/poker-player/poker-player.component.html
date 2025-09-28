@@ -11,6 +11,6 @@
     ></poker-card>
     <div class="name" [class.unvoted]="!inGame && !player!.pickedCard || inGame && !player!.connected">{{ player!.name }}</div>
     <div *ngIf="inGame && !player!.connected" class="disconnected-icon">
-        <mat-icon class="icon">signal_wifi_bad</mat-icon>
+        <img class="icon" ngSrc="assets/signal_disconnected.svg" height="24" width="24" alt="disconnected">
     </div>
 </div>

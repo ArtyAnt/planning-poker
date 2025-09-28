@@ -35,6 +35,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ConnectingSpinnerComponent} from "../lib/components/connect-spinner/connecting-spinner.component";
 import {MatIconModule} from "@angular/material/icon";
+import {NgOptimizedImage} from "@angular/common";
 
 const config: SocketIoConfig = {
     url: AppConfig.host,
@@ -73,7 +74,8 @@ const config: SocketIoConfig = {
         MatSlideToggleModule,
         MatProgressSpinnerModule,
         SocketIoModule.forRoot(config),
-        MatIconModule
+        MatIconModule,
+        NgOptimizedImage
     ],
     providers: [
         {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}

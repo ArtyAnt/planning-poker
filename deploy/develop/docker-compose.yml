@@ -12,15 +12,8 @@ services:
       - planning-poker-net
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`${HOST_ADDRESS}`) && PathPrefix(`/api`) || Host(`${HOST_ADDRESS}`) && PathPrefix(`/socket.io`)"
-      - "traefik.http.services.backend.loadBalancer.server.port=8000"
-
-      - "traefik.http.middlewares.cors.headers.accesscontrolallowmethods=*"
-      - "traefik.http.middlewares.cors.headers.accesscontrolallowheaders=*"
-      - "traefik.http.middlewares.cors.headers.accesscontrolalloworiginlist=*"
-      - "traefik.http.middlewares.cors.headers.accesscontrolmaxage=100"
-      - "traefik.http.middlewares.cors.headers.addvaryheader=true"
-      - "traefik.http.routers.backend.middlewares=cors"
+      - "traefik.http.routers.pp-be.rule=Host(`${HOST_ADDRESS}`) && PathPrefix(`/api`) || Host(`${HOST_ADDRESS}`) && PathPrefix(`/socket.io`)"
+      - "traefik.http.services.pp-be.loadBalancer.server.port=8000"
 
   traefik:
     container_name: pp-traefik
@@ -47,8 +40,8 @@ services:
       dockerfile: ./frontend/Dockerfile
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.web.rule=Host(`${HOST_ADDRESS}`)"
-      - "traefik.http.services.web.loadbalancer.server.port=8080"
+      - "traefik.http.routers.pp-web.rule=Host(`${HOST_ADDRESS}`)"
+      - "traefik.http.services.pp-web.loadbalancer.server.port=8080"
     networks:
       - planning-poker-net
 
