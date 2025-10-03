@@ -25,7 +25,7 @@ FROM build-${SOURCE_STAGE} AS artifact-source
 FROM node:lts-buster-slim
 
 WORKDIR /app
-COPY --from=artifact-source --chown node:node /app
+COPY --from=artifact-source --chown=node:node /app .
 
 USER node
 EXPOSE 8000
